@@ -1,0 +1,34 @@
+---
+title: "ReDom social graph, content, events and marketplace"
+description: "Describe social feed, profiles, relationship graph, search, events, and marketplace domains."
+---
+
+## Profiles and privacy
+
+Profile routes cover profile reads, editing, media and profile sharing. The central schema includes user/profile information, settings and privacy controls. Profile visibility and individual information visibility are separate concerns; document each setting from the schema and route behavior.
+
+## Feed and content
+
+The backend README documents posts, comments, reactions, saves, shares, mentions, stories and polls. Post types include text, photo, video, reel, story, poll, shared and quote. Visibility values include public, friends, followers and only-me. Posts also carry edit/delete/publication state and feature-level controls such as comments and sharing.
+
+## Social graph
+
+The social domain includes friend requests, friends, followers, following, blocked users, muted users and restricted users. These relationships have different semantics and should not be merged into a single generic "connection" model.
+
+## Search
+
+Search modules include user, username, public ID and profile ID discovery plus search history. Search responses can contain profile and verification metadata; avoid exposing private profile fields in public search documentation.
+
+## Events
+
+The events domain includes event creation/discovery, hosted and past events, event settings, covers, RSVPs, interested/going responses, cancellation, physical locations, virtual URLs, time zones, radius and recurrence rules.
+
+## Marketplace
+
+Marketplace schemas cover categories, listings, interactions, reviews and transactions. The README describes listing attributes for condition, price/currency, negotiability, quantity/stock, media, location, pickup/delivery/shipping, moderation/review, views, saves, shares, messages, purchases, return/refund policy, and featured/sponsored promotion state.
+
+Listing lifecycle states include draft, pending review, active, reserved, sold, out of stock, hidden, removed and deleted.
+
+## Source modules
+
+Relevant route modules include `feed.routes.ts`, `comment.routes.ts`, `profile.routes.ts`, `profile-edit.routes.ts`, `profile-media.routes.ts`, `profile-share.routes.ts`, `friends.routes.ts`, `search.routes.ts`, `events.routes.ts`, `product.routes.ts`. Database modules provide the authoritative field-level contract.
