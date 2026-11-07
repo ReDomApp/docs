@@ -1,0 +1,26 @@
+---
+title: "ReDom AI and media systems"
+description: "Architecture of ReDom image generation, video generation, Movie Studio, and the independent Intelligence Core service."
+---
+
+The repository contains distinct AI systems with separate responsibilities and runtime boundaries.
+
+## Image generation
+
+The backend image engine orchestrates authenticated requests, quotas and security checks, then dispatches jobs to `artifacts/redom-image-worker`. The worker README documents a Diffusers-based runtime with a configurable SDXL checkpoint. Text-to-image and image editing features are described; advanced features such as a ReDom-trained foundation checkpoint or additional control systems must not be claimed unless current implementation proves them.
+
+## Video generation
+
+`artifacts/redom-video-worker` is a private worker artifact. Its README documents a Wan2.2 TI2V-5B foundation runtime, text/image-conditioned generation and job processing. Checkpoint availability, GPU resources, queue, storage and worker authentication are runtime prerequisites.
+
+## Movie Studio
+
+Movie Studio is a backend showrunner/director workflow with project, script/story planning, shot organization, continuity and production orchestration. Its services and migrations are separate from the lower-level video worker.
+
+## ReDom Intelligence
+
+`artifacts/redom-intelligence` is an independent inference service. Its README defines model routing identities and OpenAI-compatible API behavior. Product model names do not prove model weights are trained or deployed; an actual inference endpoint and model assets must be configured.
+
+## Security
+
+GPU workers should remain private behind authenticated backend-to-worker calls. Apply quotas, authorization, validation and output checks in the backend. Do not expose model weights, secrets or internal worker endpoints.
