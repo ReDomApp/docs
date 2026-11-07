@@ -1,0 +1,37 @@
+---
+title: "Aurelink API workflows and billing model"
+description: "Describe Aurelink catalog, quotes, activations, rentals, dedicated numbers, wallet ledger and provider integrations."
+---
+
+Aurelink routes are mounted inside the ReDom backend. The route registry includes customer, non-VoIP, authentication, security, developer and admin route modules.
+
+## Provider clients
+
+The service directory contains SMSPool, NonVoip and Veriphone clients. Provider credentials must remain server-side. Provider catalog availability and line classification are runtime dependencies and must be verified before advertising inventory.
+
+## Pricing
+
+The inspected `aurelink-pricing.service.ts` calculates customer prices in integer minor units. For standard products, it adds the provider amount, an Aurelink charge, and a product-specific check fee. The first short-term purchase path applies a discount that offsets half of the Aurelink charge plus the check fee. The rental pricing helper applies a 1.0x Aurelink charge for mobile lines and 0.5x for VoIP lines, plus the dedicated check fee.
+
+The actual configured fee values are read from environment variables with safe defaults. Do not publish secret values or claim current prices from source defaults.
+
+## Wallet
+
+The wallet service supports top-up, purchase, refund, renewal and adjustment ledger types. Credits and debits use positive integer minor units, check idempotency by reference, lock the wallet row, update balance and insert a ledger record. Debits reject insufficient balances.
+
+## Customer workflow
+
+The integration README documents catalog discovery, price/stock lookup, short-lived single-use quotes, checkout, activation purchase, message polling, cancellation, long-term rental quotes, renewal, cancellation, and wallet ledger access. The exact route schemas are in the Aurelink route modules.
+
+## Security and payment rules
+
+A purchase must be fulfilled only after server-side payment verification or a successful wallet debit. Client-side redirects are not payment proof. Provider cancellation and wallet refund are separate outcomes. Failed or missing mobile-line verification should not be treated as a successful line-type check.
+
+## Source modules
+
+- `src/routes/aurelink*.routes.ts`
+- `src/services/aurelink/aurelink-pricing.service.ts`
+- `src/services/aurelink/aurelink-wallet.service.ts`
+- `src/services/aurelink/aurelink-lifecycle-worker.service.ts`
+- `src/services/aurelink/aurelink-dedicated-renewal.service.ts`
+- `src/middleware/aurelink-auth.middleware.ts`
