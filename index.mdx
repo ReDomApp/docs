@@ -1,41 +1,37 @@
 ---
 title: "AUREVON GROUP engineering knowledge base"
-description: "Central company and engineering documentation for AUREVON GROUP, its subsidiaries, products, platforms, and infrastructure."
+description: "Source-backed technical documentation for AUREVON GROUP products, backend APIs, data models, services, integrations, and infrastructure."
 ---
 
 # AUREVON GROUP, INC.
 
-This is the central documentation and engineering knowledge base for AUREVON GROUP, INC. It covers the parent company and the full product portfolio during development.
+This site documents the engineering portfolio maintained in the AUREVON master repository. It is organized around the actual product boundaries and source modules rather than generic product descriptions.
 
-Use the product sections to understand each system independently while preserving shared company-wide architecture, security standards, and engineering decisions.
-
-## Explore the organization
-
-<Card title="Parent company" icon="building-2" href="/company/overview">
-  Corporate structure, documentation ownership, and shared company context.
-</Card>
-<Card title="ReDom" icon="network" href="/redom/overview">
-  Social platform, applications, backend, payments, messaging, and AI systems.
+<Card title="ReDom platform" icon="network" href="/redom/overview">
+  Core social platform, backend architecture, API routes, data models, messaging, commerce, payments, and security.
 </Card>
 <Card title="Aurelink" icon="message-square" href="/aurelink/overview">
-  SMS services, mobile numbers, OTP workflows, wallet, and provider integrations.
+  Number inventory, activations, OTP workflows, rentals, pricing, wallet, and provider integrations.
+</Card>
+<Card title="Communications infrastructure" icon="server" href="/redom-sms/overview">
+  ReDom SMS carrier/SMPP transport and ReDom Mail delivery infrastructure.
+</Card>
+<Card title="AI and advanced systems" icon="brain-circuit" href="/ai-systems/overview">
+  Image and video workers, Movie Studio, Intelligence Core, and FBI Security reporting.
+</Card>
+<Card title="Engineering" icon="code-2" href="/engineering/system-architecture">
+  Monorepo structure, database architecture, security standards, and source inventory.
 </Card>
 
-<Card title="RedMail" icon="mail" href="/redmail/overview">
-  Mail infrastructure, SMTP, domains, authentication, and delivery operations.
-</Card>
+## Source of truth
 
-<Card title="Engineering and infrastructure" icon="server" href="/engineering/standards">
-  Source-backed documentation rules, security boundaries, and technical standards.
-</Card>
+- Master engineering repository: [ReDomApp/redom-backend](https://github.com/ReDomApp/redom-backend), branch `main`.
+- Documentation repository: [ReDomApp/docs](https://github.com/ReDomApp/docs), branch `main`.
 
-## How this knowledge base works
+The backend repository is the implementation source. This repository is the documentation output. Documentation changes must not modify product code, deployments, production databases, provider accounts, or infrastructure.
 
-- **Central during development:** AUREVON GROUP maintains the shared documentation workspace.
-- **Product-specific knowledge:** ReDom, Aurelink, and other products have distinct sections.
-- **Source-backed accuracy:** Implementation claims must be verified against current source, schemas, API definitions, and deployment configuration.
-- **Independent future documentation:** Products may move to their own documentation sites when ready. The parent site retains corporate-level information and links.
+## Accuracy and status
 
-## Important boundary
+Each page distinguishes source-implemented behavior from configured runtime dependencies, incomplete work, and planned capabilities. A route or worker in source does not prove that its production deployment or external provider connection is operational.
 
-This site is for documentation. Repository access should be read-only wherever possible. Documentation work must not modify application source, deploy products, change production databases, or operate payment and infrastructure systems.
+Secrets, credentials, customer personal data, payment credentials, and sensitive runtime values are never published.
