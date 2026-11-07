@@ -1,0 +1,22 @@
+---
+title: "ReDom Mail delivery infrastructure"
+description: "ReDom Mail API, SMTP worker, DKIM signing, durable queue, retries, inbound mail prerequisites, and webhook events."
+---
+
+ReDom Mail is an independent service artifact under `artifacts/redom-mail`. Its README describes an HTTPS API and a separate SMTP worker that delivers to recipient MX hosts.
+
+## Outbound delivery
+
+The documented lifecycle accepts an authenticated request, persists the message, returns a queued identifier, and lets the worker claim and deliver the message. DKIM RSA-SHA256 signing, lifecycle state, transient retry/backoff, idempotency, scheduled messages, batches and attachments are described in the service README.
+
+## Inbound mail
+
+Inbound SMTP requires more than deploying the API. External prerequisites include a reachable SMTP host, stable public IP, reverse DNS/PTR, MX records, firewall access and an enabled inbound worker. These must be verified before claiming inbound service readiness.
+
+## Security
+
+Keep API credentials and DKIM private keys in secret storage. Restrict sender domains, sign webhook payloads, handle bounces/complaints/suppression and do not expose an unauthenticated SMTP relay.
+
+## Source
+
+See `artifacts/redom-mail/README.md`, the service API documentation and the source under `artifacts/redom-mail`.
