@@ -1,0 +1,34 @@
+---
+title: "ReDom payments, subscriptions and Stars"
+description: "Explain the payment transaction model, provider callbacks, refunds, saved methods, subscriptions, Stars checkout, trials, and gifting."
+---
+
+The payment domain is mounted through `/payments` and `/orders-payments`, with refund routes under `/refunds`. The route registry also mounts Stars payment and gifting modules under the orders/payments prefix.
+
+## Payment lifecycle
+
+The backend README describes payment plans, subscriptions, transactions, payment verification, callbacks, webhooks, customer notifications, refunds, and renewal behavior. Transaction records include internal and provider transaction identifiers, user/plan references, amount, currency, purpose, status, checkout URL, gateway status, paid timestamp, metadata, email state and refund lifecycle fields.
+
+## Stripe services
+
+The source service inventory includes Stripe payment handling, saved payment methods, country support and Stars trial services. Payment provider events and transaction state must be verified server-side. A client redirect or browser success page is not authoritative proof of payment.
+
+## ReDom Stars
+
+Stars have separate payment, account, transaction, trial and gifting behavior. The migration history includes Stars payments, creator-economy support, Stripe checkout attempts, failure tracking, trial records and saved payment methods. The inspected trial service credits the trial Stars only after confirming the relevant Stripe setup/payment-method flow and persists the trial state transactionally.
+
+## Refunds and idempotency
+
+Refund routes and services manage review, decision, processing and customer notification. Payment and wallet fulfillment must be idempotent; provider callbacks should be verified and deduplicated before changing transaction or entitlement state.
+
+## Source modules
+
+- `src/routes/payments.routes.ts`
+- `src/routes/orders-payments.routes.ts`
+- `src/routes/refund.routes.ts`
+- `src/routes/stars-payments.routes.ts`
+- `src/routes/stars-gifting.routes.ts`
+- `src/services/payments/`
+- `src/services/refund/`
+
+Exact endpoint schemas, provider-specific requirements, currencies, country eligibility, pricing, and current live status must be read from the implementation and verified against provider configuration.
