@@ -1,0 +1,25 @@
+---
+title: "Data architecture and security principles"
+description: "PostgreSQL, Drizzle, migrations, authorization, payment verification, and documentation safety."
+---
+
+The ReDom backend uses PostgreSQL with Drizzle ORM. Schema modules live under `src/database`; versioned migrations and Drizzle metadata live under `drizzle/`.
+
+## Data discipline
+
+- Treat schema modules and migrations as authoritative for columns, constraints, indexes and relationships.
+- Review migration history before proposing a schema change.
+- Do not run migrations during documentation work.
+- Do not infer live production state from local source.
+
+## Security boundaries
+
+The backend uses server-side authentication and authorization, request validation, rate limiting, session and recognized-device controls, two-factor verification, fraud checks, provider webhook verification and idempotent payment fulfillment. Resource ownership must be checked before exposing or changing user data.
+
+## Payment authority
+
+Payment-sensitive actions require server-side verification of provider state, account, amount, currency and transaction purpose. Client redirects and success animations are not payment proof. Wallet ledger operations must be idempotent and balance-safe.
+
+## Documentation safety
+
+Never publish credentials, API keys, private keys, passwords, tokens, OTPs, customer personal information, payment card data, CVV or sensitive environment values. Document environment variable names only when necessary and never include their values.
