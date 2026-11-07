@@ -1,0 +1,30 @@
+---
+title: "AUREVON portfolio and repository ownership"
+description: "Product boundaries, source-of-truth repositories, and documentation scope."
+---
+
+AUREVON's engineering portfolio is maintained in a pnpm monorepo named `ReDomApp/redom-backend`. Despite its name, the repository contains multiple product applications and services.
+
+## Repositories
+
+- **Implementation source:** [ReDomApp/redom-backend](https://github.com/ReDomApp/redom-backend), branch `main`.
+- **Documentation output:** [ReDomApp/docs](https://github.com/ReDomApp/docs), branch `main`.
+
+The master repository owns application source. The docs repository owns technical documentation and Mintlify navigation.
+
+## Product and service boundaries
+
+| Product/system | Source location | Runtime relationship |
+|---|---|---|
+| ReDom | `artifacts/redom-backend`, `artifacts/redom-frontend`, `artifacts/redomweb` | Core social platform with separate mobile/web clients and backend |
+| Aurelink | `artifacts/aurelink*`, backend Aurelink routes/services | Integrated into ReDom backend; public and admin clients are separate |
+| ReDom Mail | `artifacts/redom-mail` | Independent mail API and SMTP worker |
+| ReDom SMS | `artifacts/redom-sms` | Independent SMS API, queue and SMPP transport |
+| ReDom Intelligence | `artifacts/redom-intelligence` | Independent inference service |
+| Image worker | `artifacts/redom-image-worker` | Private GPU worker called by ReDom backend |
+| Video worker | `artifacts/redom-video-worker` | Private GPU worker called by ReDom backend |
+| FBI Security | `artifacts/fbi-security`, backend feature modules | Feature within the ReDom backend |
+
+## Documentation rules
+
+Claims are based on current source, tests, schema and deployment configuration. Runtime availability requires live evidence. Planned features must not be described as production capabilities. No secrets, private keys, tokens, customer data or payment credentials are published.
