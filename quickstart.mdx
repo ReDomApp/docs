@@ -1,47 +1,40 @@
 ---
-title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+title: "How to use this engineering documentation"
+description: "Navigate the AUREVON technical knowledge base and understand how implementation claims are verified and maintained."
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
+## How the documentation is organized
 
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
+Use the product navigation to move from a system overview into its API routes, data model, security design, and operational details. ReDom is the central backend application; Aurelink is integrated into that backend, while ReDom Mail, ReDom SMS, ReDom Intelligence, and GPU workers have separate service boundaries.
 
-## Prerequisites
+## Source verification
 
-Before you begin, you must have:
+For implementation details, inspect the current `ReDomApp/redom-backend/main` branch:
 
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
+- Route registry and route modules define mounted HTTP interfaces.
+- Controllers and services define request behavior and business rules.
+- Drizzle schema modules and SQL migrations define persistent data structures.
+- Tests establish the behavior they actually exercise.
+- Package manifests and deployment manifests describe build and deployment intent.
+- Live provider and infrastructure state is required to claim operational availability.
 
-## Get started
+## Status vocabulary
 
-<Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
+| Status | Meaning |
+|---|---|
+| Implemented in source | Code for the behavior exists in the current branch |
+| Configured | Runtime configuration exists or is documented; live operation may still require verification |
+| Partial | Some parts exist, but the complete workflow is not present or verified |
+| Planned | Explicitly described as future work |
+| Unverified | Available evidence does not establish current behavior |
 
-    ```bash
-    npm install your-package
-    ```
-  </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
+## Documentation update process
 
-    ```bash
-    your-cli init
-    ```
-  </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
+1. Compare changes in the master repository with the previous documented source revision.
+2. Identify affected products, route modules, schemas, services, and deployment files.
+3. Read the relevant source and tests; do not infer an API contract from filenames alone.
+4. Update the affected pages in `ReDomApp/docs`.
+5. Validate internal links, navigation, and technical claims.
+6. Publish the docs change only; never deploy application code as part of documentation work.
 
-    ```bash
-    your-cli start
-    ```
-  </Step>
-</Steps>
-
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
-
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
-</Tip>
+Automatic push-triggered documentation workflows are not active on the current Mintlify Hobby plan. Until a supported workflow is enabled, this update process requires an authorized documentation run.
