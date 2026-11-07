@@ -1,0 +1,48 @@
+---
+title: "ReDom backend API route map"
+description: "Mounted route groups and source modules in the Express backend route registry."
+---
+
+The authoritative route registry is `artifacts/redom-backend/src/routes/index.ts`. The registry imports feature modules and mounts them on the Express router. This page maps the mounted groups; exact HTTP methods, paths, schemas, status codes, and authentication rules must be read from each route module.
+
+## Route groups and modules
+
+| API area / mount | Route modules |
+|---|---|
+| Health | `health.ts` |
+| Operations | `/ops` → `operations.routes.ts` |
+| Authentication | `/auth` → `auth.routes.ts` |
+| Sessions | `/sessions` → `session.routes.ts` |
+| AI and knowledge | `/ai` → `ai.routes.ts`, `knowledge.routes.ts` |
+| Support and refunds | `/support`, `/refunds` |
+| Feed and comments | `/feed`, `/comments` |
+| Public groups and friends | `/public-groups`, `/friends` |
+| Events and bug reports | `/events`, `/bug-reports` |
+| Payments | `/orders-payments`, `/payments` |
+| Stars | `/orders-payments` → Stars payments and gifting modules |
+| Product / policy | `/product` → product and messaging policy versions |
+| Messages | `/messages` → message, media, encryption, group, inbox, receipt, forwarding, draft and guard modules |
+| Calls | `/calls` → calls and call links |
+| Reactions | `/message-reactions` |
+| Search | `/search` |
+| Profiles | `/profile` and subpaths for edit/media |
+| Aurelink | Aurelink auth, security, developer, customer, non-VoIP and admin modules are mounted directly |
+| WhatsApp Cloud | `whatsapp-cloud.routes.ts` |
+| ReDom MCP | `redom-mcp.routes.ts` |
+
+## Messaging module inventory
+
+The route registry mounts separate modules for encrypted media, forwarded media, shared messaging, message media, completion/lifecycle, group schema bootstrap, group details, invite permissions, scheduled group calls, group management, approvals, send guards, messaging guards, E2EE, conversation cryptography, forwarding, chat information, linked-device links, drafts, read receipts, inbox, group reports, and core messages.
+
+## Contract extraction standard
+
+For each endpoint, document:
+
+- Method and fully mounted path (including parent router prefix).
+- Authentication and authorization middleware.
+- Request parameters, body schema and validation.
+- Response schema and representative success/error codes.
+- Idempotency, pagination, rate limits and ownership checks.
+- Side effects, database tables and external provider calls.
+
+Do not infer a public endpoint merely from an imported filename. Source links: [route registry](https://github.com/ReDomApp/redom-backend/blob/main/artifacts/redom-backend/src/routes/index.ts) and [route directory](https://github.com/ReDomApp/redom-backend/tree/main/artifacts/redom-backend/src/routes).
