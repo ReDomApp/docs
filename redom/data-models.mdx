@@ -1,0 +1,38 @@
+---
+title: "ReDom database and data model catalog"
+description: "A catalog of the backend Drizzle schema modules and migration history by domain."
+---
+
+The backend uses PostgreSQL and Drizzle ORM. Schema modules are located in `artifacts/redom-backend/src/database`; versioned SQL migrations and Drizzle metadata are under `artifacts/redom-backend/drizzle`.
+
+## Identity and security
+
+Schema modules include users and profiles (central schema), user settings, privacy, account actions, account security, active sessions, sessions, login history, recognized devices, registration challenges and reservations, email/phone verification, TOTP login challenges, recovery codes, and verification documents/subscriptions.
+
+## Social graph and feed
+
+Modules include friends, friend requests, followers, following, blocked users, muted users, restricted users, posts, draft posts, scheduled posts, post media, comments, reactions, mentions, shares, saves, saved collections, stories, story viewers, polls, feed preferences, and search history.
+
+## Messaging and calls
+
+Modules include conversations, conversation participants, messages, message attachments, message media envelopes, message reads, message drafts, message requests, message deletions, group invite links, scheduled group calls, calls, and encrypted media-related state.
+
+## Commerce, marketplace and payments
+
+Modules include marketplace categories, listings, interactions, reviews, transactions, payment plans, subscriptions, payment transactions, payment webhook events, refund state and related support data. Stars accounts, transactions, gifting, trial and payment tables are represented across schema modules and migrations.
+
+## AI and media
+
+Modules include ReDom AI images, image quota, AI security events, AI videos, video studio, video metadata, captions, comments, views, and quality state.
+
+## Support, reports and audit
+
+Modules include reports, report evidence messages, appeals, notifications, notification preferences, activity logs, and support schema/repair helpers.
+
+## Migration discipline
+
+The migration history is the authority for schema evolution. The current tree includes numbered migrations for payment processing, provider transaction identifiers, Stars payments and trial, saved payment methods, recognized devices, AI images and quotas, AI videos, Video Studio, story/director engine, support inbound repairs, and advanced image outputs.
+
+## Important limitations
+
+This is a file/module catalog, not a column-level ERD. Exact columns, types, indexes, foreign keys, uniqueness constraints and nullability must be extracted from the schema definitions and SQL migrations. Never apply migrations as part of documentation generation. Source: [database modules](https://github.com/ReDomApp/redom-backend/tree/main/artifacts/redom-backend/src/database) and [Drizzle migrations](https://github.com/ReDomApp/redom-backend/tree/main/artifacts/redom-backend/drizzle).
