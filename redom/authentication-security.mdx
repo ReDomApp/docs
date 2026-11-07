@@ -1,0 +1,43 @@
+---
+title: "ReDom authentication and device security"
+description: "Document account login, device recognition, verification challenges, two-factor authentication, sessions, and security controls."
+---
+
+Authentication routes are registered under `/auth`; session routes under `/sessions`. The implementation is split into services under `src/services/auth`.
+
+## Service responsibilities
+
+The current service inventory includes authentication, email, fraud checks, identity verification, login flow, login history, login notifications, network-provider lookup, password recovery and hashing, pending registration, phone handling, profile/public ID allocation, recognized devices, registration challenges/reservations, sessions, TOTP, and verification policy.
+
+## Login and device trust
+
+The inspected `LoginFlowService`:
+
+1. Resolves the supplied account identifier.
+2. Verifies the password using the password service.
+3. Rejects suspended, banned, or pending accounts.
+4. Performs IP intelligence inspection and fraud checks.
+5. Checks whether the device credential is associated with the account server-side.
+6. Requires a device-verification challenge when the device is not recognized.
+7. Applies configured two-factor authentication before creating the final session.
+8. Records login history and attempts a login notification after session creation.
+
+A recognized device is based on a server-side association; a client-provided device identifier alone is not proof of trust.
+
+## Verification channels
+
+The login flow supports authenticator-based TOTP challenges and verified email or phone channels depending on account security settings. New-device verification challenges are bound to the account and can be checked against the originating device and request IP where those values are available.
+
+## Security documentation rules
+
+Do not publish token formats, live challenge values, secrets, password hashes, recovery codes, or sensitive fraud signals. Exact endpoint behavior and middleware must be verified in the route implementation before documenting a public API contract.
+
+## Source files
+
+- `src/services/auth/login-flow.service.ts`
+- `src/services/auth/recognized-device.service.ts`
+- `src/services/auth/session.service.ts`
+- `src/services/auth/totp.service.ts`
+- `src/services/auth/verification.service.ts`
+- `src/routes/auth.routes.ts`
+- `src/routes/session.routes.ts`
