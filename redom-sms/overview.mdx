@@ -1,0 +1,22 @@
+---
+title: "ReDom SMS infrastructure"
+description: "ReDom SMS API, durable message queue, SMPP transport, delivery receipts, inbound messaging, and carrier prerequisites."
+---
+
+ReDom SMS is a separate service artifact under `artifacts/redom-sms`. Its documented design includes an HTTP API, durable PostgreSQL queue, message lifecycle, carrier routing, direct SMPP/SMSC transport, delivery receipts, inbound messages and webhook delivery.
+
+## Message lifecycle
+
+The API accepts and validates a message, persists it, queues it for processing, submits it to a configured carrier route, and later records delivery receipts or terminal failures. API acceptance is not equivalent to network delivery.
+
+## Transport and carrier interconnection
+
+SMPP software does not itself grant access to public mobile networks. Live delivery requires lawful carrier/SMSC interconnection, issued credentials, sender permissions, throughput and route configuration, delivery receipt support, inbound permissions, and any required country registrations.
+
+## Compliance controls
+
+The API documentation describes E.164 validation, GSM-7/UCS-2 encoding, multipart segmentation, idempotency, retries, cancellation of queued/scheduled messages, HMAC-signed webhooks and opt-out processing. STOP, UNSUBSCRIBE, CANCEL, END and QUIT are documented opt-out keywords.
+
+## Readiness
+
+Until real carrier connectivity and end-to-end delivery tests are verified, describe this as SMS infrastructure software rather than a globally connected carrier network. Source: `artifacts/redom-sms/README.md` and `artifacts/redom-sms/API.md`.
