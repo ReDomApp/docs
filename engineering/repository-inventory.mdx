@@ -1,0 +1,34 @@
+---
+title: "Repository inventory"
+description: "Top-level products, backend route/service/schema modules, and shared packages discovered in the current master tree."
+---
+
+The recursive Git tree on `main` was inspected for this initial inventory. It contains 1,172 tracked files and 16 top-level artifact directories.
+
+## Product directories
+
+`artifacts/api-server`, `aurelink-admin`, `aurelink-public`, `aurelink`, `fbi-security`, `redom-about`, `redom-backend`, `redom-docs`, `redom-frontend`, `redom-help`, `redom-image-worker`, `redom-intelligence`, `redom-mail`, `redom-sms`, `redom-video-worker`, and `redomweb`.
+
+## Backend route modules
+
+The current `src/routes` directory includes: AI, Aurelink auth/admin/developer/non-VoIP/security/customer routes, WhatsApp Cloud, health, auth, sessions, support, refunds, knowledge, feed, comments, profiles/edit/media/share, product policy versions, messages/media/encrypted media, messaging E2EE/conversation crypto/forwarding/shared/inbox/drafts/read receipts/chat info/groups/approvals/reports/invite permissions/send guards, calls/call links, search, public groups, friends, events, bug reports, link history, orders/payments, Stars payments/gifting, ReDom MCP and operations.
+
+The authoritative mount prefixes are in `src/routes/index.ts`.
+
+## Backend service modules
+
+The service tree includes authentication and registration, fraud and identity verification, network-provider and recognized-device services, feed and comments, Aurelink pricing/wallet/provider/lifecycle/renewal services, payment and Stripe/Stars services, refunds, support, FBI Security research, ReDom AI chat/media/image/video and Movie Studio, operations intelligence, and profile/media lifecycle helpers.
+
+## Database schema modules
+
+The database directory includes identity/security, sessions, profiles/privacy, social graph, feed/posts/comments/reactions, messaging/conversations/attachments/reads/drafts, calls, events, marketplace, payments/subscriptions/webhooks, AI media/quota/security, video studio, notifications, reports, appeals and audit-related modules.
+
+## Source links
+
+- [Full repository tree](https://github.com/ReDomApp/redom-backend/tree/main)
+- [Routes](https://github.com/ReDomApp/redom-backend/tree/main/artifacts/redom-backend/src/routes)
+- [Services](https://github.com/ReDomApp/redom-backend/tree/main/artifacts/redom-backend/src/services)
+- [Database schemas](https://github.com/ReDomApp/redom-backend/tree/main/artifacts/redom-backend/src/database)
+- [Migrations](https://github.com/ReDomApp/redom-backend/tree/main/artifacts/redom-backend/drizzle)
+
+This is a navigational inventory, not yet a file-by-file reference. The inventory should be regenerated after structural changes.
