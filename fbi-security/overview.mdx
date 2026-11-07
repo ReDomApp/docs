@@ -1,0 +1,22 @@
+---
+title: "FBI Security public-notice reporting feature"
+description: "Source-backed overview of the ReDom-integrated public-notice research and evidence review feature."
+---
+
+FBI Security is documented as a feature inside the ReDom backend, not a separate government service. Its code and specification are under `artifacts/fbi-security` and backend route/service modules.
+
+## Feature areas
+
+The repository documentation describes public notice and case search, source registry, source corroboration, analyst assessments, evidence-linked report drafts, candidate correlations, authorized manual imports, review status, analyst notes and audit history.
+
+## Evidence handling
+
+Research should be limited to public records and approved source domains. Retrieved metadata is evidence for human review, not proof of an allegation. Same-name-only matches must remain unresolved; allegations must be distinguished from findings or convictions; and reward amounts must be separated from penalties or restitution.
+
+## Human review
+
+Human review is required before official submission. The system must not imply government affiliation or represent itself as an official FBI system.
+
+## Status
+
+Automatic official-feed polling and external runtime dependencies must be checked against current implementation and tests before describing them as operational.
