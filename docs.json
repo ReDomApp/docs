@@ -1,78 +1,82 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Aurevon Group, Inc.",
+  "name": "AUREVON GROUP, INC.",
   "colors": {
     "primary": "#1877F2",
     "light": "#4595FF",
     "dark": "#0F5CC5"
   },
-  "favicon": "/favicon.svg",
-  "navigation": {
-    "pages": [
-      {
-        "group": "Getting Started",
-        "pages": [
-          "index",
-          "quickstart"
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
   },
-  "navbar": {
-    "links": [
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Documentation",
+          "icon": "book-open-cover",
+          "href": "https://mintlify.com/docs"
+        }
+      ]
+    },
+    "pages": [
       {
-        "label": "Support",
-        "href": "mailto:support@mintlify.com"
+        "group": "Start here",
+        "pages": [
+          "index",
+          "quickstart"
+        ]
+      },
+      {
+        "group": "Company & portfolio",
+        "pages": [
+          "company/overview"
+        ]
+      },
+      {
+        "group": "ReDom platform",
+        "pages": [
+          "redom/overview",
+          "redom/api-route-map",
+          "redom/data-models",
+          "redom/authentication-security",
+          "redom/messaging",
+          "redom/social-commerce",
+          "redom/payments-stars"
+        ]
+      },
+      {
+        "group": "Aurelink",
+        "pages": [
+          "aurelink/overview",
+          "aurelink/api-and-billing"
+        ]
+      },
+      {
+        "group": "Communications infrastructure",
+        "pages": [
+          "redom-sms/overview",
+          "redmail/overview"
+        ]
+      },
+      {
+        "group": "AI & advanced systems",
+        "pages": [
+          "ai-systems/overview",
+          "fbi-security/overview"
+        ]
+      },
+      {
+        "group": "Engineering",
+        "pages": [
+          "engineering/system-architecture",
+          "engineering/repository-inventory",
+          "engineering/data-and-security"
+        ]
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.mintlify.com"
-    }
-  },
-  "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
     ]
-  },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
-    }
-  },
-  "background": {
-    "color": {
-      "light": "#FFFFFF",
-      "dark": "#000000"
-    }
   }
 }
