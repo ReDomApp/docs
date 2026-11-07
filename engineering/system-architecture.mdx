@@ -1,0 +1,29 @@
+---
+title: "Master repository and system architecture"
+description: "A map of the pnpm monorepo, backend application, product artifacts, shared libraries, and runtime boundaries."
+---
+
+The master repository is a pnpm workspace. The recursive source tree currently contains 1,172 tracked files and 16 top-level product/service artifact directories.
+
+## Workspace
+
+- `artifacts/*`: product applications, backend services, workers and standalone systems.
+- `lib/*`: shared packages.
+- `scripts/*`: workspace tooling.
+- Root manifests: `package.json`, `pnpm-workspace.yaml`, and `pnpm-lock.yaml`.
+
+## Backend application
+
+`artifacts/redom-backend` is a TypeScript ESM Express 5 service. Its source is organized into routes, controllers, services, database schema modules, middleware, libraries and configuration. Drizzle migrations are under its `drizzle/` directory.
+
+## Product artifacts
+
+The current tree includes api-server, aurelink-admin, aurelink-public, aurelink, fbi-security, redom-about, redom-backend, redom-docs, redom-frontend, redom-help, redom-image-worker, redom-intelligence, redom-mail, redom-sms, redom-video-worker and redomweb.
+
+## Shared packages
+
+The repository includes shared API client/specification/validation and database packages, including `lib/api-client-react`, `lib/api-spec`, `lib/api-zod` and `lib/db`.
+
+## Build verification
+
+The root workspace uses pnpm. Confirm current scripts in package manifests before running commands. The backend's own package manifest is authoritative for build, typecheck and test commands. Documentation generation must not run database migrations or deploy application services.
