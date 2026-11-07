@@ -1,0 +1,32 @@
+---
+title: "ReDom platform architecture"
+description: "A system overview of ReDom's clients, Express API, domain services, storage, and product capabilities."
+---
+
+ReDom is a social and communication platform with separate mobile and web clients backed by a TypeScript API.
+
+## Client applications
+
+- `artifacts/redom-frontend`: Expo/React Native mobile application.
+- `artifacts/redomweb`: separate React and Vite web application.
+- `artifacts/redom-backend`: Express 5 API and domain services.
+
+The web client is a distinct product surface and must not depend on React Native UI components.
+
+## Backend stack
+
+The root repository README documents TypeScript, Node.js, Express 5, PostgreSQL, Drizzle ORM, Zod, and pnpm workspaces. Supporting infrastructure includes Redis-compatible workloads, object storage, search, geolocation/security helpers, structured logging, rate limiting, and error monitoring.
+
+## Product domains
+
+The backend README enumerates authentication, sessions, recognized devices, two-factor authentication, profiles, feed/posts, comments, reactions, saves, shares, stories, friend/follower graph, search, direct/group messaging, encrypted media and conversation cryptography, calls, events, marketplace, payments, refunds, Stars, AI, video generation, Movie Studio, support, reports, OAuth and MCP integration.
+
+See [API route map](/redom/api-route-map), [data models](/redom/data-models), [messaging](/redom/messaging), [social and commerce](/redom/social-commerce), and [payments](/redom/payments-stars).
+
+## Architecture boundaries
+
+Aurelink and FBI Security are mounted into the ReDom backend. ReDom Mail, ReDom SMS, ReDom Intelligence, and image/video workers are separate service artifacts. Do not assume all systems share one process or one deployment.
+
+## Runtime status
+
+Repository presence establishes code and design intent, not production health. Deployment, credentials, DNS, provider interconnection, GPU capacity, queues, and storage must be verified independently.
